@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const StartShips = () => {
     const [starShips, setStarShips] = useState(null)
@@ -22,7 +22,10 @@ const StartShips = () => {
             setLoading(false)
         }
     }
-
+    useEffect(() => {
+        fetchStarShips()
+    }
+        , [])   
 
     return (
         <div>
