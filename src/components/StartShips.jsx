@@ -6,7 +6,6 @@ const StartShips = () => {
     const [error, setError] = useState(null)
     const [page, setPage] = useState(1)
 
-
     const fetchStarShips = async () => {
         setLoading(true)
         setError(null)
