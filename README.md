@@ -41,5 +41,3 @@ Veuràs que els ids de "swapi.dev" i "starwars-visualguide.com" coincideixen.
 
 - **Nom de nau.**
 - **Model**
-
-[Ejercicio](https://www.notion.so/Ejercicio-4dfe92dd065c4ef7ab64ab6c46542cc7)
