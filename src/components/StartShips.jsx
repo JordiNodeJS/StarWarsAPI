@@ -1,10 +1,41 @@
 import { useEffect, useState } from "react"
+import { Button, createStyles, Table, ScrollArea, Text, Group } from '@mantine/core';
+import {  At } from 'tabler-icons-react';
+
+const useStyles = createStyles((theme) => ({
+    header: {
+      position: 'sticky',
+      top: 0,
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+      transition: 'box-shadow 150ms ease',
+  
+      '&::after': {
+        content: '""',
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        borderBottom: `1px solid ${
+          theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[2]
+        }`,
+      },
+    },
+  
+    scrolled: {
+      boxShadow: theme.shadows.sm,
+    },
+  }));
+
 
 const StartShips = () => {
     const [starShips, setStarShips] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [page, setPage] = useState(1)
+
+    const { classes, cx } = useStyles();
+    const [scrolled, setScrolled] = useState(false);
+
 
     const fetchStarShips = async () => {
         setLoading(true)
@@ -26,17 +57,40 @@ const StartShips = () => {
     }
         , [])   
 
+
+    const row = !loading && !error && starShips &&
+         starShips.map(starShip =>
+            <tr key={starShip.name} ><td size="xs" weight={250} className={classes.name}>Starship name: {starShip.name}</td>
+            </tr>)
+
     return (
         <div>
-            <h1>Start Ships</h1>
-            <button onClick={ () =>{
-                fetchStarShips()
-                setPage(page + 1)
-            }}>Fetch Star Ships</button>
-            {loading && <p>Loading...</p>}
-            {error && <p>Error: {error.message}</p>}
-            {!loading && !error && starShips && starShips.map(starShip => <p key={starShip.name}>Starship name: {starShip.name}</p>)}
-            {!loading && !error && <div>pages: {page} </div>}
+            <Group>
+                <div>
+                    <Button  onClick={ () =>{
+                    fetchStarShips()
+                    setPage(page + 1)
+                }}>Fetch Star Ships</Button>
+               
+                <h1>Start Ships</h1>
+                 </div>
+                {loading && <Text size="xs" sx={{ textTransform: 'uppercase' }} weight={700} color="dimmed" >Loading...</Text>}
+                {error && <p>Error: {error.message}</p>}
+                <ScrollArea sx={{ height: 300 }} onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
+                <Table sx={{ minWidth: 700 }}>
+                    <thead className={cx(classes.header, { [classes.scrolled]: scrolled })}>
+                    <tr>
+                        <th>Name</th>
+       
+                    </tr>
+                    </thead>
+                    <tbody>{row}</tbody>
+                </Table>
+                </ScrollArea>
+
+
+                {!loading && !error && <div>pages: {page} </div>}
+            </Group>
         </div>
     )
 }

@@ -8,8 +8,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mantine/core": "^4.2.10",
+    "@mantine/hooks": "^4.2.10",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "tabler-icons-react": "^1.51.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
