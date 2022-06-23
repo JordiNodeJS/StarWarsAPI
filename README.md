@@ -41,3 +41,6 @@ Veuràs que els ids de "swapi.dev" i "starwars-visualguide.com" coincideixen.
 
 - **Nom de nau.**
 - **Model**
+
+
+[icons](https://tabler-icons-react.vercel.app/)

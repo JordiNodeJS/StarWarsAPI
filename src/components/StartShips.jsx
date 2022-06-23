@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { Button, createStyles, Table, ScrollArea, Text, Group } from '@mantine/core';
-import {  At } from 'tabler-icons-react';
+import { createStyles, Table, ScrollArea, Text, Center, Paper, Pagination, Container  } from '@mantine/core';
+import {  Eye } from 'tabler-icons-react';
 
 const useStyles = createStyles((theme) => ({
     header: {
@@ -31,10 +31,10 @@ const StartShips = () => {
     const [starShips, setStarShips] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-    const [page, setPage] = useState(1)
 
-    const { classes, cx } = useStyles();
-    const [scrolled, setScrolled] = useState(false);
+    const [page, setPage] = useState(1)
+    const { classes, cx } = useStyles()
+    const [scrolled, setScrolled] = useState(false)
 
 
     const fetchStarShips = async () => {
@@ -46,51 +46,72 @@ const StartShips = () => {
             console.log(data.results);
             setStarShips(data.results)
             setLoading(false)
+        
         } catch (error) {
             console.log('error', error);
             setError(error)
             setLoading(false)
         }
     }
+
     useEffect(() => {
         fetchStarShips()
     }
-        , [])   
+    , [page])   
 
 
     const row = !loading && !error && starShips &&
-         starShips.map(starShip =>
-            <tr key={starShip.name} ><td size="xs" weight={250} className={classes.name}>Starship name: {starShip.name}</td>
-            </tr>)
+        starShips.map(starShip =>
+            <tr key={starShip.name} ><td size="xs" weight={250} className={classes.name}>
+                <Paper>
+                <Text size='sm' mt='xs' color='dimmed'>
+                       name 
+                    </Text>
+                    <Text transform='uppercase'>
+                        {starShip.name}
+                    </Text>
+                    <Text size='sm' mt='xs' color='dimmed'>
+                    model 
+                    </Text>
+                    <Text mb=''>
+                        {starShip.model}                    
+                    </Text>
+                </Paper>
+            </td>
+            <td>
+                <Eye
+                size={24}
+                strokeWidth={2}
+                color={'#407fbf'}
+                 />
+            </td>
+            </tr>
+        )
 
     return (
         <div>
-            <Group>
-                <div>
-                    <Button  onClick={ () =>{
-                    fetchStarShips()
-                    setPage(page + 1)
-                }}>Fetch Star Ships</Button>
-               
-                <h1>Start Ships</h1>
-                 </div>
+            <Center mt='sm'>
+            {!loading && !error && <Pagination total={5} page={page} onChange={setPage} />}
+            </Center>
+            <Container>
+
                 {loading && <Text size="xs" sx={{ textTransform: 'uppercase' }} weight={700} color="dimmed" >Loading...</Text>}
                 {error && <p>Error: {error.message}</p>}
-                <ScrollArea sx={{ height: 300 }} onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
+                <ScrollArea sx={{ height: 400 }} onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
                 <Table sx={{ minWidth: 700 }}>
                     <thead className={cx(classes.header, { [classes.scrolled]: scrolled })}>
                     <tr>
-                        <th>Name</th>
-       
+                        <th>Star Ship List </th>
                     </tr>
                     </thead>
                     <tbody>{row}</tbody>
                 </Table>
                 </ScrollArea>
-
-
-                {!loading && !error && <div>pages: {page} </div>}
-            </Group>
+            </Container>
+            <Center mt='sm'>
+            {!loading && !error && <Pagination total={5} page={page} onChange={setPage} />}
+            </Center>
+  
         </div>
     )
 }

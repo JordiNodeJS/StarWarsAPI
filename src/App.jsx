@@ -1,12 +1,13 @@
+import { BrowserRouter } from 'react-router-dom'
+import RouterApp from './router/RouterApp'
 import './App.css'
-import StartShips from './components/StartShips'
 
 function App() {
-
-
   return (
     <>
-      <StartShips />
+      <BrowserRouter>
+        <RouterApp />
+      </BrowserRouter>
     </>
   )
 }
