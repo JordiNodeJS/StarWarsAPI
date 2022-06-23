@@ -1,8 +1,9 @@
 import { Routes, Route } from 'react-router-dom'
-import StartShips from '../components/StartShips'
+import StarShips from '../components/StarShips'
+import StarShip from '../components/StarShip'
 import NavBar from './NavBar'
 
-const datalink = {
+const navbarLinks = {
   "links": [
     {
       "link": "/home",
@@ -15,18 +16,19 @@ const datalink = {
 
   ]
 }
+const Home = () => <h1>Home</h1>
+const Welcome = () => <h1>Welcome</h1>
 
 const Router = () => {
-  const Home = () => <h1>Home</h1>
-  const Welcome = () => <h1>Welcome</h1>
 
   return (
     <>
-        <NavBar {...datalink} />
+        <NavBar {...navbarLinks} />
         <Routes>
           <Route path="/" element={<Welcome />}></Route>
           <Route path="home" element={<Home />}></Route>
-          <Route path="starships" element={<StartShips />}></Route>
+          <Route path="starships" element={<StarShips />}></Route>
+          <Route path='starship/:id' element={<StarShip />}></Route>
         </Routes>
       
     </>
