@@ -91,19 +91,20 @@ const NavBar = ({ links }) => {
     const [active, setActive] = useState(links[0].link);
     const { classes, cx } = useStyles();
   
-    const items = links.map((link) => (
+    const items = links.map(link => (
       <Link
         key={link.label}
         to={link.link}
-        className={cx(classes.link, { [classes.linkActive]: active === link.link })}
-        onClick={ _ => {
+        className={cx(classes.link, {
+          [classes.linkActive]: active === link.link,
+        })}
+        onClick={_ => {
           setActive(link.link)
           toggleOpened(false)
-        }}
-      >
+        }}>
         {link.label}
       </Link>
-    ));
+    ))
   
   return (
     <>
