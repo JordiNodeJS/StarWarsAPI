@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
+import { ContextStarWars } from '../router/ContextStarWarsProvider'
 import { createStyles, Table, ScrollArea, Text, Center, Paper, Pagination, Container  } from '@mantine/core';
 import {  Eye } from 'tabler-icons-react';
 import { Link } from "react-router-dom";
-import Pag from "./Pag";
 
 const useStyles = createStyles((theme) => ({
     header: {
@@ -30,15 +30,17 @@ const useStyles = createStyles((theme) => ({
 
 
 const StarShips = () => {
-    const [starShips, setStarShips] = useState(null)
+    const {starShips, setStarShips,setUrl, page, setPage} = useContext(ContextStarWars)
+
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
-    const [page, setPage] = useState(1)
     const { classes, cx } = useStyles()
     const [scrolled, setScrolled] = useState(false)
 
-    const propStates = { error, page, setPage }
+    
+
+
 
 
     const fetchStarShips = async () => {
@@ -69,7 +71,8 @@ const StarShips = () => {
       !error &&
       starShips &&
       starShips.map( ({ name, model, url }) => {
-        const starshipID = url.match(/(\d+)/)[0]
+        const starshipIDpage = url.match(/(\d+)/)[0]
+        
         return (
         <tr key={name}>
           <td size='xs' weight={250} className={classes.name}>
@@ -86,17 +89,21 @@ const StarShips = () => {
           </td>
           <td>
           <Text color='dimmed' size='xs'>{url}</Text>
-          <Link to={`/starShip/${starshipID}`}>
+
+          <Link onClick={ _ => setUrl(url) } to={`/starships/${starshipIDpage}`}>
               <Eye size={24} strokeWidth={2} color={'#407fbf'} />
           </Link>
            
           </td>
         </tr>
       )})
+    
     return (
         <>
             <div>
-             <Pag {...propStates} />
+            <Center mt='sm'>
+            { <Pagination total={7} page={page} onChange={setPage} />}
+            </Center>
                 <Container>
                     {loading && <Text size="xs" sx={{ textTransform: 'uppercase' }} weight={700} color="dimmed" >Loading...</Text>}
                     {error && <p>Error: {error.message}</p>}
