@@ -30,18 +30,20 @@ const useStyles = createStyles((theme) => ({
 
 
 const StarShips = () => {
-    const {starShips, setStarShips,setUrl, page, setPage} = useContext(ContextStarWars)
-
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
+    const {
+      starShips,
+      setStarShips,
+      setUrl,
+      page,
+      setPage,
+      error,
+      setError,
+      loading,
+      setLoading,
+    } = useContext(ContextStarWars)
 
     const { classes, cx } = useStyles()
     const [scrolled, setScrolled] = useState(false)
-
-    
-
-
-
 
     const fetchStarShips = async () => {
         setLoading(true)
@@ -49,7 +51,6 @@ const StarShips = () => {
         try {
             const response = await fetch(`https://swapi.dev/api/starships/?page=${page}`)
             const data = await response.json()
-            console.log(data.results);
             setStarShips(data.results)
             setLoading(false)
         
@@ -120,7 +121,6 @@ const StarShips = () => {
                 </Container>
             </div>
         </>
-
     )
 }
 

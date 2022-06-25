@@ -43,4 +43,6 @@ Veuràs que els ids de "swapi.dev" i "starwars-visualguide.com" coincideixen.
 - **Model**
 
 
-[icons](https://tabler-icons-react.vercel.app/)
+[Icons](https://tabler-icons-react.vercel.app/)
+
+[Converting Object to an Array](https://www.samanthaming.com/tidbits/76-converting-object-to-array/)
