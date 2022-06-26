@@ -18,7 +18,7 @@ const navbarLinks = {
 
   ]
 }
-const Home = () => <h1>Home</h1>
+const Home = () => [<h1 key={1}>Home</h1>, <h2 key={2}>My Sweet Home</h2>]
 const Welcome = () => <h1>Welcome</h1>
 
 const Router = () => {

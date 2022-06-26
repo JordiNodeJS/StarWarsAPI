@@ -88,12 +88,12 @@ const StarShips = () => {
         <>
             <div>
             <Center mt='sm'>
-            { <Pagination total={7} page={page} onChange={setPage} />}
+            { <Pagination total={4} page={page} onChange={setPage} />}
             </Center>
                 <Container>
                     {loading && <Text size="xs" sx={{ textTransform: 'uppercase' }} weight={700} color="dimmed" >Loading...</Text>}
                     {error && <p>Error: {error.message}</p>}
-                    <ScrollArea sx={{ height: 400 }} onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
+                    <ScrollArea sx={{ height: '100vh' }} onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
                     <Table sx={{ minWidth: 700 }}>
                         <thead className={cx(classes.header, { [classes.scrolled]: scrolled })}>
                         <tr>
