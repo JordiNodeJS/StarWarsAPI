@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react"
 import { ContextStarWars } from '../router/ContextStarWarsProvider'
+import useFetchShipsList from '../hooks/useFetchShipsList'
 import { createStyles, Table, ScrollArea, Text, Center, Paper, Pagination, Container  } from '@mantine/core';
 import {  Eye } from 'tabler-icons-react';
 import { Link } from "react-router-dom";
@@ -31,38 +32,22 @@ const useStyles = createStyles((theme) => ({
 
 const StarShips = () => {
     const {
-      starShips,
-      setStarShips,
+   
       setUrl,
       page,
       setPage,
       error,
-      setError,
-      loading,
-      setLoading,
+     
+      loading
+     
     } = useContext(ContextStarWars)
 
     const { classes, cx } = useStyles()
     const [scrolled, setScrolled] = useState(false)
-
-    const fetchStarShips = async () => {
-        setLoading(true)
-        setError(null)
-        try {
-            const response = await fetch(`https://swapi.dev/api/starships/?page=${page}`)
-            const data = await response.json()
-            setStarShips(data.results)
-            setLoading(false)
-        
-        } catch (error) {
-            console.log('error', error);
-            setError(error)
-            setLoading(false)
-        }
-    }
+    const  [starShips, fetchStarShips] = useFetchShipsList()
 
     useEffect(() => {
-        fetchStarShips()
+        fetchStarShips(page)
     }
     , [page])   
 
