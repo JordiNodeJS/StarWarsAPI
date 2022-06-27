@@ -32,14 +32,11 @@ const useStyles = createStyles((theme) => ({
 
 const StarShips = () => {
     const {
-   
       setUrl,
       page,
       setPage,
       error,
-     
       loading
-     
     } = useContext(ContextStarWars)
 
     const { classes, cx } = useStyles()
@@ -50,7 +47,6 @@ const StarShips = () => {
         fetchStarShips(page)
     }
     , [page])   
-
 
     const row =
       !loading &&
@@ -94,7 +90,7 @@ const StarShips = () => {
                     {loading && <Text size="xs" sx={{ textTransform: 'uppercase' }} weight={700} color="dimmed" >Loading...</Text>}
                     {error && <p>Error: {error.message}</p>}
                     <ScrollArea sx={{ height: '100vh' }} onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
-                    <Table sx={{ minWidth: 700 }}>
+                    <Table sx={{ minWidth: 400 }}>
                         <thead className={cx(classes.header, { [classes.scrolled]: scrolled })}>
                         <tr>
                             <th>Star Ship List </th>
