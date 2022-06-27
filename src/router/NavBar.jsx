@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { createStyles, Header, Container, Group, Burger, Paper, Transition } from '@mantine/core';
 import { useBooleanToggle } from '@mantine/hooks';
+import ButtonTheme from '../components/ButtonTheme'
 
 const HEADER_HEIGHT = 60;
 
@@ -38,7 +39,7 @@ const useStyles = createStyles((theme) => ({
   inner: {
     height: HEADER_HEIGHT,
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
   },
 
@@ -108,34 +109,37 @@ const NavBar = ({ links }) => {
   
   return (
     <>
-
       <Header height={HEADER_HEIGHT} mb={0} className={classes.root}>
-      <Container className={classes.header}>
-      <Burger
-          opened={opened}
-          onClick={() => toggleOpened()}
-          className={classes.burger}
-          size="sm"
-        />
+        <Container className={classes.header}>
+          <Burger
+            opened={opened}
+            onClick={() => toggleOpened()}
+            className={classes.burger}
+            size='sm'
+          />
 
-       <Container className={classes.inner}>
-        <Group spacing={5} className={classes.links}>
-          {items}
-        </Group>
-       </Container>
-
-       
-
-        <Transition transition="pop-top-right" duration={200} mounted={opened}>
-          {(styles) => (
-            <Paper className={classes.dropdown} withBorder style={styles}>
+          <Container className={classes.inner}>
+            <Group spacing={5} className={classes.links}>
               {items}
-            </Paper>
-          )}
-        </Transition>
-      </Container>
-    </Header>
+            </Group>
+          </Container>
 
+          <Group position='right'>
+            <ButtonTheme />
+          </Group>
+
+          <Transition
+            transition='pop-top-right'
+            duration={200}
+            mounted={opened}>
+            {styles => (
+              <Paper className={classes.dropdown} withBorder style={styles}>
+                {items}
+              </Paper>
+            )}
+          </Transition>
+        </Container>
+      </Header>
     </>
   )
 }

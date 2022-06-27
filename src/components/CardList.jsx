@@ -79,7 +79,7 @@ export default function CardList(starShipID) {
       </Card.Section>
       <Card.Section className={classes.footer}>
         <Text size='lg' className={classes.title} weight={500}>
-          Ships Features nº {id}
+          StarShips nº {id} Features 
         </Text>
 
         <Text size='xs' color='dimmed' mt={3} mb='xl'>

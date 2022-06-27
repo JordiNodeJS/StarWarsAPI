@@ -1,15 +1,26 @@
+import { useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import RouterApp from './router/RouterApp'
-import { MantineProvider } from '@mantine/core';
-
+import { MantineProvider, ColorSchemeProvider } from '@mantine/core'
 
 function App() {
+  const [colorScheme, setColorScheme] = useState('dark')
+  const toggleColorScheme = _ =>
+    setColorScheme(colorScheme === 'dark' ? 'light' : 'dark')
+
   return (
-    <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
-      <BrowserRouter>
-        <RouterApp />
-      </BrowserRouter>
-    </MantineProvider>
+    <ColorSchemeProvider
+      colorScheme={colorScheme}
+      toggleColorScheme={toggleColorScheme}>
+      <MantineProvider
+        theme={{ colorScheme }}
+        withGlobalStyles
+        withNormalizeCSS>
+        <BrowserRouter>
+          <RouterApp />
+        </BrowserRouter>
+      </MantineProvider>
+    </ColorSchemeProvider>
   )
 }
 
