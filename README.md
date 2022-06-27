@@ -1,3 +1,12 @@
+## Get started with the project configuration
+
+```bash
+npm run dev 
+```
+'cause we use vite to manage the project configuration.
+It allows us to minimize the bundle size and performance issues is really important and overall fast.
+
+
 # Star Wars API 
 
 Created: June 20, 2022 11:32 PM
@@ -42,6 +51,8 @@ Veuràs que els ids de "swapi.dev" i "starwars-visualguide.com" coincideixen.
 - **Nom de nau.**
 - **Model**
 
+
+[Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
 [Icons](https://tabler-icons-react.vercel.app/)
 
