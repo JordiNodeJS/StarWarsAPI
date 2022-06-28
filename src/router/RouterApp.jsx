@@ -4,8 +4,9 @@ import StarShip from '../components/StarShip'
 import NavBar from './NavBar'
 import NotFound from './NotFound'
 import ContextStarWarsProvider from './ContextStarWarsProvider'
-import GlobalCustom from '../components/GlobalCustom'
-
+import GlobalFontFace from '../components/GlobalFontFace'
+import GlobalCustomStyles from '../components/GlobalCustomStyles'
+import Logo from '../components/Logo'
 
 const navbarLinks = {
   "links": [
@@ -28,10 +29,11 @@ const Router = () => {
 
   return (
     <ContextStarWarsProvider>
-      <GlobalCustom />
+      <GlobalFontFace />
+      <GlobalCustomStyles />
         <NavBar {...navbarLinks} />
         <Routes>
-          <Route path="/" element={<Welcome />} />
+          <Route path="/" element={<Logo />} />
           <Route path="home" element={<Home />} />
           <Route path="starships" element={<StarShips />} />
           <Route path='starships/:id' element={<StarShip />} />

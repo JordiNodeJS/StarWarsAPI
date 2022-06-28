@@ -20,7 +20,7 @@ const useStyles = createStyles(theme => ({
     backgroundColor:
       theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
     transition: 'box-shadow 150ms ease',
-    fontFamily: 'DIN Bold',
+    fontFamily: 'DIN',
 
     '&::after': {
       content: '""',
@@ -37,7 +37,7 @@ const useStyles = createStyles(theme => ({
   },
   links: {
     textDecoration: 'none',
-    color: theme.colorScheme === 'light' ? theme.colors.dark[7] : theme.white,
+    color: theme.colorScheme === 'light' ? theme.colors.dark[7] : theme.colors.gray[6],
     '&:hover': {
       color:
         theme.colorScheme === 'light'
@@ -46,15 +46,15 @@ const useStyles = createStyles(theme => ({
     },
   },
   text: {
-    // fontFamily: 'DIN Black',
     // fontFamily: 'Star Bold',
     // fontFamily: 'DIN Next W01 Condensed Regular',
-    fontFamily: 'DIN Medium',
     // fontFamily: 'Star Bold',
+    // fontFamily: 'DIN Medium',
+    fontFamily: 'DIN Next W01 Bold',
     textTransform: 'uppercase',
   },
   model: {
-    fontFamily: 'DIN Next W01 Condensed Regular',
+    fontFamily: 'DIN Next W01 Medium',
   },
   scrolled: {
     boxShadow: theme.shadows.sm,
@@ -85,13 +85,15 @@ const StarShips = () => {
             <Paper>
               <Link
                 className={classes.links}
-                onClick={ _ => setUrl(url)}
+                onClick={_ => setUrl(url)}
                 to={`/starships/${starshipIDpage}`}>
-                <Text  transform="uppercase" className={classes.text}>{name}</Text>
-                <Text size='sm' mt='xs' color='dimmed'>
-                  model
+                <Text transform='uppercase' className={classes.text}>
+                  {name}
                 </Text>
-                <Text>{model}</Text>
+
+                <Text className={classes.model} size='sm' mt='xs' color='dimmed'>
+                  {model}
+                </Text>
               </Link>
             </Paper>
           </td>
@@ -102,7 +104,7 @@ const StarShips = () => {
   return (
     <>
       <div>
-        <Center mt='sm'>
+        <Center mt='lg'>
           {<Pagination total={4} page={page} onChange={setPage} />}
         </Center>
         <Container>
@@ -117,7 +119,7 @@ const StarShips = () => {
           )}
           {error && <p>Error: {error.message}</p>}
           <ScrollArea
-            sx={{ height: '100vh' }}
+            sx={{ height: 'calc(80vh - 30px)' }}
             onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
             <Table sx={{ minWidth: 400 }}>
               <thead
