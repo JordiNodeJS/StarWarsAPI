@@ -5,13 +5,21 @@ import condensedRegular from '../fonts/DIN_Next_W01_Condensed_Regular.woff2'
 import black from '../fonts/DIN_Black.woff2'
 import starBold from '../fonts/star_bold.woff'
 
-export function GlobalCustom() {
+export default function GlobalCustom() {
   return (
     <Global
-      styles={[
-        {
-          '@font-face': {
-            fontFamily: 'DIN Medium',
+    styles={[
+      {
+        '@font-face': {
+          fontFamily: 'Star Bold',
+          src: `url('${starBold}') format("woff")`,
+          fontWeight: 900,
+          fontStyle: 'normal',
+        },
+      },
+      {
+        '@font-face': {
+          fontFamily: 'DIN Medium',
             src: `url('${medium}') format("woff2")`,
             fontWeight: 400,
             fontStyle: 'normal',
@@ -37,14 +45,6 @@ export function GlobalCustom() {
           '@font-face': {
             fontFamily: 'DIN Bold',
             src: `url('${bold}') format("woff2")`,
-            fontWeight: 900,
-            fontStyle: 'normal',
-          },
-        },
-        {
-          '@font-face': {
-            fontFamily: 'Star Bold',
-            src: `local('${starBold}') format("woff")`,
             fontWeight: 900,
             fontStyle: 'normal',
           },
