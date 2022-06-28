@@ -4,6 +4,8 @@ import StarShip from '../components/StarShip'
 import NavBar from './NavBar'
 import NotFound from './NotFound'
 import ContextStarWarsProvider from './ContextStarWarsProvider'
+import GlobalCustom from '../components/GlobalCustom'
+
 
 const navbarLinks = {
   "links": [
@@ -26,6 +28,7 @@ const Router = () => {
 
   return (
     <ContextStarWarsProvider>
+      <GlobalCustom />
         <NavBar {...navbarLinks} />
         <Routes>
           <Route path="/" element={<Welcome />} />

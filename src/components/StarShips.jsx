@@ -11,7 +11,6 @@ import {
   Pagination,
   Container,
 } from '@mantine/core'
-import { Eye } from 'tabler-icons-react'
 import { Link } from 'react-router-dom'
 
 const useStyles = createStyles(theme => ({
@@ -48,9 +47,11 @@ const useStyles = createStyles(theme => ({
   },
   text: {
     // fontFamily: 'DIN Black',
-    fontFamily: 'Star Bold',
+    // fontFamily: 'Star Bold',
+    // fontFamily: 'DIN Next W01 Condensed Regular',
+    fontFamily: 'DIN Medium',
+    // fontFamily: 'Star Bold',
     textTransform: 'uppercase',
-    fontSize: 34
   },
   model: {
     fontFamily: 'DIN Next W01 Condensed Regular',
@@ -86,10 +87,7 @@ const StarShips = () => {
                 className={classes.links}
                 onClick={ _ => setUrl(url)}
                 to={`/starships/${starshipIDpage}`}>
-                <Text className={classes.text} mt='xs' color='dimmed'>
-                  name
-                </Text>
-                <Text className={classes.text}>{name}</Text>
+                <Text  transform="uppercase" className={classes.text}>{name}</Text>
                 <Text size='sm' mt='xs' color='dimmed'>
                   model
                 </Text>
@@ -97,17 +95,6 @@ const StarShips = () => {
               </Link>
             </Paper>
           </td>
-          {/* <td>
-            <Text color='dimmed' size='xs'>
-              {url}
-            </Text>
-
-            <Link
-              onClick={_ => setUrl(url)}
-              to={`/starships/${starshipIDpage}`}>
-              <Eye size={24} strokeWidth={2} color={'#407fbf'} />
-            </Link>
-          </td> */}
         </tr>
       )
     })
