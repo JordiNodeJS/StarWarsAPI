@@ -73,18 +73,18 @@ const useStyles = createStyles(theme => ({
   },
   menu: {
     display: 'flex',
-    justifyContent: 'space-between',
+
     alignItems: 'center',
   },
-  menuText: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
+
   login: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    position: 'relative',
+    right: -200,
+    [theme.fn.smallerThan('sm')]: {
+      position: 'relative',
+      top: -20,
+    
+    }
   },
 
   buttonTheme: {
@@ -187,14 +187,14 @@ const NavBar = ({ links }) => {
             </Container>
 
            <Container className={classes.menu}>
-           {/* <Space  w={200} /> */}
-             <Container className={classes.menuText}>
+            <Space w={100} /> 
+             <Container>
               <Group spacing={5} className={classes.links}>
                 {items}
               </Group>
              </Container>
             
-             <Space w={200} />
+             
              
              <Container className={classes.login}>
               <Group spacing={5}>
