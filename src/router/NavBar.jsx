@@ -1,16 +1,30 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { createStyles, Header, Container, Group, Burger, Paper, Transition } from '@mantine/core';
-import { useBooleanToggle } from '@mantine/hooks';
+import {
+  createStyles,
+  Header,
+  Container,
+  Center,
+  Grid,
+  Text,
+  Anchor,
+  Space,
+  Group,
+  Burger,
+  Paper,
+  Transition,
+} from '@mantine/core'
+import { useBooleanToggle } from '@mantine/hooks'
 import ButtonTheme from '../components/ButtonTheme'
+// import Logo from '../components/Logo'
+import LogoSvg from '../components/LogoSvg'
 
-const HEADER_HEIGHT = 60;
+const HEADER_HEIGHT = 230
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(theme => ({
   root: {
     position: 'relative',
     zIndex: 1,
-
   },
 
   dropdown: {
@@ -29,15 +43,59 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
+  // header: {
+  //   display: 'flex',
+  //   justifyContent: 'space-between',
+  //   alignItems: 'center',
+  //   height: '100%',
+  // },
+
   header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: '100%',
+    position: 'relative',
+    height: HEADER_HEIGHT,
+    paddingTop: theme.spacing.sm,
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[6]
+        : theme.colors.yellow[6],
+    borderBottom: `1px solid ${
+      theme.colorScheme === 'dark' ? 'transparent' : theme.colors.gray[2]
+    }`,
+    marginBottom: 0,
   },
 
   inner: {
     height: HEADER_HEIGHT,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  menu: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  menuText: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  login: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+
+  buttonTheme: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  logo: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -61,12 +119,18 @@ const useStyles = createStyles((theme) => ({
     padding: '8px 12px',
     borderRadius: theme.radius.sm,
     textDecoration: 'none',
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[0]
+        : theme.colors.gray[7],
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
 
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[6]
+          : theme.colors.gray[0],
     },
 
     [theme.fn.smallerThan('sm')]: {
@@ -81,32 +145,32 @@ const useStyles = createStyles((theme) => ({
         theme.colorScheme === 'dark'
           ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
           : theme.colors[theme.primaryColor][0],
-      color: theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 3 : 7],
+      color:
+        theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 3 : 7],
     },
   },
-}));
-
+}))
 
 const NavBar = ({ links }) => {
-    const [opened, toggleOpened] = useBooleanToggle(false);
-    const [active, setActive] = useState(links[0].link);
-    const { classes, cx } = useStyles();
-  
-    const items = links.map(link => (
-      <Link
-        key={link.label}
-        to={link.link}
-        className={cx(classes.link, {
-          [classes.linkActive]: active === link.link,
-        })}
-        onClick={_ => {
-          setActive(link.link)
-          toggleOpened(false)
-        }}>
-        {link.label}
-      </Link>
-    ))
-  
+  const [opened, toggleOpened] = useBooleanToggle(false)
+  const [active, setActive] = useState(links[0].link)
+  const { classes, cx } = useStyles()
+
+  const items = links.map(link => (
+    <Link
+      key={link.label}
+      to={link.link}
+      className={cx(classes.link, {
+        [classes.linkActive]: active === link.link,
+      })}
+      onClick={_ => {
+        setActive(link.link)
+        toggleOpened(false)
+      }}>
+      {link.label}
+    </Link>
+  ))
+
   return (
     <>
       <Header height={HEADER_HEIGHT} mb={0} className={classes.root}>
@@ -117,14 +181,32 @@ const NavBar = ({ links }) => {
             className={classes.burger}
             size='sm'
           />
-
           <Container className={classes.inner}>
-            <Group spacing={5} className={classes.links}>
-              {items}
-            </Group>
+            <Container mb='sm' mt={-60} className={classes.logo}>
+              <LogoSvg />
+            </Container>
+
+           <Container className={classes.menu}>
+           {/* <Space  w={200} /> */}
+             <Container className={classes.menuText}>
+              <Group spacing={5} className={classes.links}>
+                {items}
+              </Group>
+             </Container>
+            
+             <Space w={200} />
+             
+             <Container className={classes.login}>
+              <Group spacing={5}>
+                <Anchor>LOGIN</Anchor>
+                <Anchor>LOGOUT</Anchor>
+              </Group>
+             </Container>
+           </Container>
+
           </Container>
 
-          <Group position='right'>
+          <Group className={classes.buttonTheme}>
             <ButtonTheme />
           </Group>
 
