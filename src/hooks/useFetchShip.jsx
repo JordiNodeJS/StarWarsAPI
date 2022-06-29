@@ -11,7 +11,6 @@ export default function useFetchShip() {
     try {
       const response = await fetch(url)
       const data = await response.json()
-      console.log(data)
       setStarShipID(data)
       setLoading(false)
     } catch (error) {

@@ -195,7 +195,6 @@ const NavBar = ({ links }) => {
             <Container mb='sm' mt={-60} className={classes.logo}>
               <Grid>
                 <Grid.Col span={3}>
-                  {/* <Space w={400} /> */}
                 </Grid.Col>
                 <Grid.Col span={3}>
                   <LogoSvg />
