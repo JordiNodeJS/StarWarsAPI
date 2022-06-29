@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
-import StarShips from '../components/StarShips'
-import StarShip from '../components/StarShip'
+import StarShips from '../pages/StarShips'
+import StarShip from '../pages/StarShip'
 import NavBar from './NavBar'
 import NotFound from './NotFound'
 import ContextStarWarsProvider from './ContextStarWarsProvider'
