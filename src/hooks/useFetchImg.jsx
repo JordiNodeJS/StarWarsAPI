@@ -7,7 +7,7 @@ export default function useFetchImg() {
   const loadingGif1 = 'https://i.pinimg.com/originals/18/45/1f/18451f1e613a6ffef79eb19df88adc01.gif'
   const loadingGif2 = 'https://upload.wikimedia.org/wikipedia/commons/6/68/Solid_black.png'
   const [img, setImg] = useState(loadingGif2)
-  const [loadingImg, setLoadingImg] = useState(false)
+  const [loadingImg, setLoadingImg] = useState(true)
 
   const fetchImage = async image => {
 

@@ -23,7 +23,7 @@ const StarShip = () => {
       <h1>StarShip {id}</h1>
       <p>{url}</p>
       <Link onClick={_ => setPage(page)} to='/starships'>
-        <Button variant='gradient' color='orange'>
+      <Button variant="gradient" gradient={{ from: 'gray', to: 'yellow', deg: 105 }}>
           Back to the page
         </Button>
       </Link>
