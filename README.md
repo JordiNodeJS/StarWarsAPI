@@ -1,12 +1,3 @@
-## Get started with the project configuration
-
-```bash
-npm run dev 
-```
-'cause we use vite to manage the project configuration.
-It allows us to minimize the bundle size and performance issues is really important and overall fast.
-
-
 # Star Wars API 
 
 Created: June 20, 2022 11:32 PM
@@ -15,9 +6,6 @@ Sprint: Sprint 8
 Status: In Progress
 Type: Task 🔨
 
-Framework de css basado en tailwind:
-
-[https://daisyui.com/](https://daisyui.com/)
 
 ### Listado de naves
 
@@ -27,29 +15,34 @@ Framework de css basado en tailwind:
 
 [https://swapi.dev/api/starships/?page=1](https://swapi.dev/api/starships/?page=1)
 
-**Pots fer servir l'API "starwars-visualguide.com" per a carregar les imatges de les naus. Un exemple de nau és:**
 
-- [https://starwars-visualguide.com/assets/img/starships/5.jpg](https://starwars-visualguide.com/assets/img/starships/5.jpg)
-- [https://starwars-visualguide.com/assets/img/starships/9.jpg](https://starwars-visualguide.com/assets/img/starships/9.jpg)
+## Usage
 
-Veuràs que els ids de "swapi.dev" i "starwars-visualguide.com" coincideixen.
+This project was bootstrapped with [Vite](https://vitejs.dev/).
 
-[https://starwars-visualguide.com/#/starships/3](https://starwars-visualguide.com/#/starships/3)
+### Project setup
+```
+npm install
+```
 
-[https://swapi.dev/api/starships/3](https://swapi.dev/api/starships/3)
+#### Compiles and hot-reloads for development
+```
+npm run dev
+```
 
----
+#### Compiles and minifies for production
+```
+npm run build
+```
 
-[https://starwars-visualguide.com/#/starships/9](https://starwars-visualguide.com/#/starships/9)
+#### Customize configuration
+See [Configuration Reference](https://vitejs.dev/guide/).
 
-[](https://starwars-visualguide.com/assets/img/starships/9.jpg)
 
-[https://swapi.dev/api/starships/9](https://swapi.dev/api/starships/9)
+### Support notes
+We use vite to manage the project configuration.
+It allows us to minimize the bundle size and performance issues is really important and overall fast.
 
-**Dades a mostrar de cada nau del llistat:**
-
-- **Nom de nau.**
-- **Model**
 
 
 [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)

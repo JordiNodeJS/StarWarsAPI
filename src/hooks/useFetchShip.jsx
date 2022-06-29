@@ -1,8 +1,8 @@
-import { useContext, useState } from 'react'
-import { ContextStarWars } from '../router/ContextStarWarsProvider'
+import { useState } from 'react'
+import useContextStarWars from './useContextStarWars'
 
 export default function useFetchShip() {
-  const { setError, setLoading } = useContext(ContextStarWars)
+  const { setError, setLoading } = useContextStarWars()
   const [starShipID, setStarShipID] = useState(null)
 
   const fetchStarShipID = async url => {

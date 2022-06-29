@@ -1,5 +1,4 @@
-import { useEffect, useState, useContext } from 'react'
-import { ContextStarWars } from '../router/ContextStarWarsProvider'
+import { useEffect, useState } from 'react'
 import useFetchShipsList from '../hooks/useFetchShipsList'
 import {
   createStyles,
@@ -12,6 +11,7 @@ import {
   Container,
 } from '@mantine/core'
 import { Link } from 'react-router-dom'
+import useContextStarWars from '../hooks/useContextStarWars'
 
 const useStyles = createStyles(theme => ({
   header: {
@@ -62,7 +62,7 @@ const useStyles = createStyles(theme => ({
 }))
 
 const StarShips = () => {
-  const { setUrl, page, setPage, error, loading } = useContext(ContextStarWars)
+  const { setUrl, page, setPage, error, loading } = useContextStarWars()
 
   const { classes, cx } = useStyles()
   const [scrolled, setScrolled] = useState(false)
