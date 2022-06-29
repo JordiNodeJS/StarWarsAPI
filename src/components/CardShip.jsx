@@ -57,11 +57,15 @@ export default function CardShip(starShipID) {
     url.match(/(\d+)/)[0]
   }.jpg`
 
-  const [img, fetchImage] = useFetchImg()
+  const [img, fetchImage, loadingImg] = useFetchImg()
 
   useEffect(() => {
     fetchImage(image)
   }, [])
+
+const ImgShip = _ => img === null ? <Image src={img} alt={name} withPlaceholder height={300} /> : <Image src={img} alt={name} />
+
+
 
   const items = Object.entries(starShipID).map(([key, value], i) => {
     return (
@@ -84,7 +88,7 @@ export default function CardShip(starShipID) {
   return (
     <Card withBorder radius='md' className={classes.card}>
       <Card.Section className={classes.imageSection}>
-        <Image src={img} alt={name} height={300} />
+        <ImgShip />
       </Card.Section>
       <Card.Section className={classes.footer}>
         <Text size='lg' className={classes.title} weight={500}>
