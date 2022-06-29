@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react'
 import { ContextStarWars } from '../router/ContextStarWarsProvider'
-import CardShip from './CardShip'
+import CardShip from '../components/CardShip'
 import { Link, useParams } from 'react-router-dom'
 import useFetchShip from '../hooks/useFetchShip'
 

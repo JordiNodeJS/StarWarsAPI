@@ -75,6 +75,7 @@ const useStyles = createStyles(theme => ({
   menu: {
     display: 'flex',
     alignItems: 'center',
+    width: 300,
   },
 
   login: {
