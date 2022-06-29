@@ -1,14 +1,14 @@
-import { useContext, useEffect } from 'react'
-import { ContextStarWars } from '../router/ContextStarWarsProvider'
+import { useEffect } from 'react'
 import CardShip from '../components/CardShip'
 import { Link, useParams } from 'react-router-dom'
 import useFetchShip from '../hooks/useFetchShip'
 
 import { Button } from '@mantine/core'
+import useContextStarWars from '../hooks/useContextStarWars'
 
 const StarShip = () => {
   const { id } = useParams()
-  const { url, page, setPage, error, loading } = useContext(ContextStarWars)
+  const { url, page, setPage, error, loading } = useContextStarWars()
   const [starShipID, fetchStarShipID] = useFetchShip()
 
 

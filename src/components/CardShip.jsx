@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from 'react'
-import { ContextStarWars } from '../router/ContextStarWarsProvider'
+import { useEffect} from 'react'
 import { createStyles, Card, Center, Image, Text, Group } from '@mantine/core'
 import { useParams } from 'react-router-dom'
 import useFetchImg from '../hooks/useFetchImg'
+import useContextStarWars from '../hooks/useContextStarWars'
 
 const useStyles = createStyles(theme => ({
   card: {
@@ -32,6 +32,9 @@ const useStyles = createStyles(theme => ({
 
   title: {
     lineHeight: 1,
+    fontFamily: theme.fontFamily,
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
   },
   footer: {
     display: 'flex',
@@ -45,7 +48,7 @@ const useStyles = createStyles(theme => ({
 }))
 
 export default function CardShip(starShipID) {
-  const { url } = useContext(ContextStarWars)
+  const { url } = useContextStarWars()
   const { classes } = useStyles()
   const { id } = useParams()
   const { name, manufacturer } = starShipID
@@ -53,9 +56,8 @@ export default function CardShip(starShipID) {
   const image = `https://starwars-visualguide.com/assets/img/starships/${
     url.match(/(\d+)/)[0]
   }.jpg`
- 
+
   const [img, fetchImage] = useFetchImg()
-  
 
   useEffect(() => {
     fetchImage(image)
@@ -66,10 +68,10 @@ export default function CardShip(starShipID) {
       <Group key={i} className={classes.card}>
         <Group position='center' mt='md'>
           <Center>
-            <Text size='sm' color='dimmed' className={classes.title}>
-              {key}🥫
+            <Text size='sm' color='dimmed' className={classes.item}>
+              🗝 {key}:
             </Text>
-            <Text weight={500} size='sm' className={classes.title}>
+            <Text weight={500} size='sm' className={classes.item}>
               {value}
             </Text>
           </Center>
@@ -86,7 +88,10 @@ export default function CardShip(starShipID) {
       </Card.Section>
       <Card.Section className={classes.footer}>
         <Text size='lg' className={classes.title} weight={500}>
-          StarShips nº {id} Features
+          StarShips nº {id}
+        </Text>
+        <Text transform='uppercase' size='md' className={classes.title} weight={500}>
+         Features
         </Text>
 
         <Text size='xs' color='dimmed' mt={3} mb='xl'>
