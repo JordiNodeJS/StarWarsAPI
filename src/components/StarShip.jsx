@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react'
 import { ContextStarWars } from '../router/ContextStarWarsProvider'
-import CardList from './CardList'
+import CardShip from './CardShip'
 import { Link, useParams } from 'react-router-dom'
 import useFetchShip from '../hooks/useFetchShip'
 
@@ -22,14 +22,14 @@ const StarShip = () => {
     <>
       <h1>StarShip {id}</h1>
       <p>{url}</p>
-
-      <ul>{!loading && !error && starShipID && <CardList {...starShipID} />}</ul>
-
       <Link onClick={_ => setPage(page)} to='/starships'>
         <Button variant='gradient' color='orange'>
           Back to the page
         </Button>
       </Link>
+
+      <ul>{!loading && !error && starShipID && <CardShip {...starShipID} />}</ul>
+
 
     </>
   )

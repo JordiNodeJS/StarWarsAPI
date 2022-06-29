@@ -74,19 +74,27 @@ const useStyles = createStyles(theme => ({
   },
   menu: {
     display: 'flex',
-
     alignItems: 'center',
   },
 
   login: {
     position: 'relative',
-    right: -200,
+    top: 64,
+    right: -150,
+    display: 'flex',
+    width: 200,
+    justifyContent: 'flex-end',
     [theme.fn.smallerThan('sm')]: {
       position: 'relative',
       top: -20,
     },
   },
-
+  buttonLogin: {
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[0]
+        : theme.colors.gray[7],
+  },
   buttonTheme: {
     position: 'absolute',
     top: 0,
@@ -139,12 +147,7 @@ const useStyles = createStyles(theme => ({
     },
   },
 
-  buttonLogin: {
-    color:
-      theme.colorScheme === 'dark'
-        ? theme.colors.dark[0]
-        : theme.colors.gray[7],
-  },
+
 
   linkActive: {
     '&, &:hover': {
@@ -190,23 +193,35 @@ const NavBar = ({ links }) => {
           />
           <Container className={classes.inner}>
             <Container mb='sm' mt={-60} className={classes.logo}>
-              <LogoSvg />
+              <Grid>
+                <Grid.Col span={3}>
+                </Grid.Col>
+                <Grid.Col span={3}>
+                  <LogoSvg />
+                </Grid.Col>
+                <Grid.Col span={3} offset={3}>
+                
+                    <Group className={classes.login} spacing={9}>
+                      <Button
+                        className={cx(classes.link, classes.buttonLogin)}
+                        variant='outline'>
+                        LOGIN
+                      </Button>
+                      <Button
+                        className={cx(classes.link, classes.buttonLogin)}
+                        variant='outline'>
+                        LOGOUT
+                      </Button>
+                    </Group>
+                  
+                </Grid.Col>
+              </Grid>
             </Container>
 
             <Container className={classes.menu}>
-              <Space w={100} />
               <Container>
                 <Group spacing={5} className={classes.links}>
                   {items}
-                </Group>
-              </Container>
-
-              <Container className={classes.login}>
-                <Group spacing={9}>
-                  <Button className={cx(classes.link, classes.buttonLogin)} variant='outline'>
-                    LOGIN
-                  </Button>
-                  <Button className={cx(classes.link, classes.buttonLogin)} variant='outline'>LOGOUT</Button>
                 </Group>
               </Container>
             </Container>

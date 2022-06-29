@@ -1,7 +1,8 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ContextStarWars } from '../router/ContextStarWarsProvider'
 import { createStyles, Card, Center, Image, Text, Group } from '@mantine/core'
 import { useParams } from 'react-router-dom'
+import useFetchImg from '../hooks/useFetchImg'
 
 const useStyles = createStyles(theme => ({
   card: {
@@ -43,16 +44,37 @@ const useStyles = createStyles(theme => ({
   },
 }))
 
-export default function CardList(starShipID) {
+export default function CardShip(starShipID) {
   const { url } = useContext(ContextStarWars)
+  const { classes } = useStyles()
+  const { id } = useParams()
+  const { name, manufacturer } = starShipID
+
+  // const [img, fetchImg] = useFetchImg()
+
   const image = `https://starwars-visualguide.com/assets/img/starships/${
     url.match(/(\d+)/)[0]
   }.jpg`
 
-  const { classes } = useStyles()
-  const { id } = useParams()
+  const imageUrl = 'https://starwars-visualguide.com/assets/img/big-placeholder.jpg'
 
-  const { name, manufacturer } = starShipID
+  const [img, setImg] = useState()
+
+  const fetchImage = async image => {
+    const res = await fetch(image)
+    if (res.status === 200) { 
+      const imageBlob = await res.blob()
+      const imageObjectURL = URL.createObjectURL(imageBlob)
+      setImg(imageObjectURL)
+    }
+       else {
+      setImg(imageUrl)}
+    }
+  
+
+  useEffect(() => {
+    fetchImage(image)
+  }, [])
 
   const items = Object.entries(starShipID).map(([key, value], i) => {
     return (
@@ -75,11 +97,11 @@ export default function CardList(starShipID) {
   return (
     <Card withBorder radius='md' className={classes.card}>
       <Card.Section className={classes.imageSection}>
-        <Image src={image} alt={name} height={300} />
+        <Image src={img} alt={name} height={300} />
       </Card.Section>
       <Card.Section className={classes.footer}>
         <Text size='lg' className={classes.title} weight={500}>
-          StarShips nº {id} Features 
+          StarShips nº {id} Features
         </Text>
 
         <Text size='xs' color='dimmed' mt={3} mb='xl'>
