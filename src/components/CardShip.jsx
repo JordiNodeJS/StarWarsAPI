@@ -50,26 +50,11 @@ export default function CardShip(starShipID) {
   const { id } = useParams()
   const { name, manufacturer } = starShipID
 
-  // const [img, fetchImg] = useFetchImg()
-
   const image = `https://starwars-visualguide.com/assets/img/starships/${
     url.match(/(\d+)/)[0]
   }.jpg`
-
-  const imageUrl = 'https://starwars-visualguide.com/assets/img/big-placeholder.jpg'
-
-  const [img, setImg] = useState()
-
-  const fetchImage = async image => {
-    const res = await fetch(image)
-    if (res.status === 200) { 
-      const imageBlob = await res.blob()
-      const imageObjectURL = URL.createObjectURL(imageBlob)
-      setImg(imageObjectURL)
-    }
-       else {
-      setImg(imageUrl)}
-    }
+ 
+  const [img, fetchImage] = useFetchImg()
   
 
   useEffect(() => {
