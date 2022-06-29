@@ -8,6 +8,7 @@ import {
   Grid,
   Text,
   Anchor,
+  Button,
   Space,
   Group,
   Burger,
@@ -83,8 +84,7 @@ const useStyles = createStyles(theme => ({
     [theme.fn.smallerThan('sm')]: {
       position: 'relative',
       top: -20,
-    
-    }
+    },
   },
 
   buttonTheme: {
@@ -139,6 +139,13 @@ const useStyles = createStyles(theme => ({
     },
   },
 
+  buttonLogin: {
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[0]
+        : theme.colors.gray[7],
+  },
+
   linkActive: {
     '&, &:hover': {
       backgroundColor:
@@ -186,24 +193,23 @@ const NavBar = ({ links }) => {
               <LogoSvg />
             </Container>
 
-           <Container className={classes.menu}>
-            <Space w={100} /> 
-             <Container>
-              <Group spacing={5} className={classes.links}>
-                {items}
-              </Group>
-             </Container>
-            
-             
-             
-             <Container className={classes.login}>
-              <Group spacing={5}>
-                <Anchor>LOGIN</Anchor>
-                <Anchor>LOGOUT</Anchor>
-              </Group>
-             </Container>
-           </Container>
+            <Container className={classes.menu}>
+              <Space w={100} />
+              <Container>
+                <Group spacing={5} className={classes.links}>
+                  {items}
+                </Group>
+              </Container>
 
+              <Container className={classes.login}>
+                <Group spacing={9}>
+                  <Button className={cx(classes.link, classes.buttonLogin)} variant='outline'>
+                    LOGIN
+                  </Button>
+                  <Button className={cx(classes.link, classes.buttonLogin)} variant='outline'>LOGOUT</Button>
+                </Group>
+              </Container>
+            </Container>
           </Container>
 
           <Group className={classes.buttonTheme}>
