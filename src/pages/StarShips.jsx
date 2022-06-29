@@ -6,7 +6,9 @@ import {
   ScrollArea,
   Text,
   Center,
+  Loader,
   Paper,
+  Skeleton,
   Pagination,
   Container,
 } from '@mantine/core'
@@ -37,7 +39,10 @@ const useStyles = createStyles(theme => ({
   },
   links: {
     textDecoration: 'none',
-    color: theme.colorScheme === 'light' ? theme.colors.dark[7] : theme.colors.gray[6],
+    color:
+      theme.colorScheme === 'light'
+        ? theme.colors.dark[7]
+        : theme.colors.gray[6],
     '&:hover': {
       color:
         theme.colorScheme === 'light'
@@ -82,20 +87,26 @@ const StarShips = () => {
       return (
         <tr key={name}>
           <td size='xs' weight={250} className={classes.name}>
-            <Paper>
-              <Link
-                className={classes.links}
-                onClick={_ => setUrl(url)}
-                to={`/starships/${starshipIDpage}`}>
-                <Text transform='uppercase' className={classes.text}>
-                  {name}
-                </Text>
+            <Skeleton visible={loading}>
+              <Paper>
+                <Link
+                  className={classes.links}
+                  onClick={_ => setUrl(url)}
+                  to={`/starships/${starshipIDpage}`}>
+                  <Text transform='uppercase' className={classes.text}>
+                    {name}
+                  </Text>
 
-                <Text className={classes.model} size='sm' mt='xs' color='dimmed'>
-                  {model}
-                </Text>
-              </Link>
-            </Paper>
+                  <Text
+                    className={classes.model}
+                    size='sm'
+                    mt='xs'
+                    color='dimmed'>
+                    {model}
+                  </Text>
+                </Link>
+              </Paper>
+            </Skeleton>
           </td>
         </tr>
       )
@@ -108,31 +119,48 @@ const StarShips = () => {
           {<Pagination total={4} page={page} onChange={setPage} />}
         </Center>
         <Container>
-          {loading && (
-            <Text
-              size='xs'
-              sx={{ textTransform: 'uppercase' }}
-              weight={700}
-              color='dimmed'>
-              Loading...
-            </Text>
-          )}
           {error && <p>Error: {error.message}</p>}
-          <ScrollArea
-            sx={{ height: 'calc(80vh - 30px)' }}
-            onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
-            <Table sx={{ minWidth: 400 }}>
-              <thead
-                className={cx(classes.header, {
-                  [classes.scrolled]: scrolled,
-                })}>
-                <tr>
-                  <th>Star Ship List </th>
-                </tr>
-              </thead>
-              <tbody>{row}</tbody>
-            </Table>
-          </ScrollArea>
+
+          {loading ? (
+           <>
+             <Center mt='lg' mb='sm'>
+               <Loader variant='bars' color='yellow' size='lg' />
+             </Center>
+             <Skeleton height={12} mb={20} width="30%" radius="xl" />
+             <Skeleton height={12} mb={20} width="25%" radius="xl" />
+             <Skeleton height={12} mb={20} width="30%" radius="xl" />
+             <Skeleton height={12} mb={20} width="40%" radius="xl" />
+             <Skeleton height={12} mb={20} width="45%" radius="xl" />
+             <Skeleton height={12} mb={20} width="30%" radius="xl" />
+             <Skeleton height={12} mb={20} width="20%" radius="xl" />
+             <Skeleton height={12} mb={20} width="35%" radius="xl" />
+             <Skeleton height={12} mb={20} width="25%" radius="xl" />
+             <Skeleton height={12} mb={20} width="30%" radius="xl" />
+             <Skeleton height={12} mb={20} width="25%" radius="xl" />
+             <Skeleton height={12} mb={20} width="15%" radius="xl" />
+             <Skeleton height={12} mb={20} width="18%" radius="xl" />
+             <Skeleton height={12} mb={20} width="15%" radius="xl" />
+             <Skeleton height={12} mb={20} width="20%" radius="xl" />
+
+           </>
+          ) : (
+            <ScrollArea
+              sx={{ height: 'calc(60vh - 30px)' }}
+              onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
+              <Table sx={{ minWidth: 400 }}>
+                <thead
+                  className={cx(classes.header, {
+                    [classes.scrolled]: scrolled,
+                  })}>
+                  <tr>
+                    <th>Star Ship List </th>
+                  </tr>
+                </thead>
+
+                <tbody>{row}</tbody>
+              </Table>
+            </ScrollArea>
+          )}
         </Container>
       </div>
     </>

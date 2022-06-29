@@ -1,5 +1,13 @@
-import { useEffect} from 'react'
-import { createStyles, Card, Center, Image, Text, Group } from '@mantine/core'
+import { useEffect } from 'react'
+import {
+  createStyles,
+  Card,
+  Center,
+  Image,
+  Text,
+  Group,
+  Skeleton,
+} from '@mantine/core'
 import { useParams } from 'react-router-dom'
 import useFetchImg from '../hooks/useFetchImg'
 import useContextStarWars from '../hooks/useContextStarWars'
@@ -57,11 +65,18 @@ export default function CardShip(starShipID) {
     url.match(/(\d+)/)[0]
   }.jpg`
 
-  const [img, fetchImage] = useFetchImg()
+  const [img, fetchImage, loadingImg] = useFetchImg()
 
   useEffect(() => {
     fetchImage(image)
   }, [])
+
+  const ImgShip = _ =>
+    img === null ? (
+      <Image src={img} alt={name} withPlaceholder height={300} />
+    ) : (
+      <Image src={img} alt={name} />
+    )
 
   const items = Object.entries(starShipID).map(([key, value], i) => {
     return (
@@ -75,7 +90,7 @@ export default function CardShip(starShipID) {
               {value}
             </Text>
           </Center>
-          <Center></Center>
+          
         </Group>
       </Group>
     )
@@ -83,22 +98,35 @@ export default function CardShip(starShipID) {
 
   return (
     <Card withBorder radius='md' className={classes.card}>
-      <Card.Section className={classes.imageSection}>
-        <Image src={img} alt={name} height={300} />
-      </Card.Section>
-      <Card.Section className={classes.footer}>
-        <Text size='lg' className={classes.title} weight={500}>
-          StarShips nº {id}
-        </Text>
-        <Text transform='uppercase' size='md' className={classes.title} weight={500}>
-         Features
-        </Text>
-
-        <Text size='xs' color='dimmed' mt={3} mb='xl'>
-          Manufactured by {manufacturer}
-        </Text>
-        {items}
-      </Card.Section>
+      <Skeleton visible={loadingImg}>
+        <Card.Section className={classes.imageSection}>
+          <ImgShip />
+        </Card.Section>
+      </Skeleton>
+      <Skeleton visible={loadingImg}>
+        <Card.Section className={classes.footer}>
+          <Skeleton visible={loadingImg}>
+            <Text size='lg' className={classes.title} weight={500}>
+              StarShips nº {id}
+            </Text>
+          </Skeleton>
+          <Skeleton visible={loadingImg}>
+            <Text
+              transform='uppercase'
+              size='md'
+              className={classes.title}
+              weight={500}>
+              Features
+            </Text>
+          </Skeleton>
+          <Skeleton visible={loadingImg}>
+            <Text size='xs' color='dimmed' mt={3} mb='xl'>
+              Manufactured by {manufacturer}
+            </Text>
+          </Skeleton>
+          {items}
+        </Card.Section>
+      </Skeleton>
     </Card>
   )
 }

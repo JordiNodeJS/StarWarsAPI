@@ -6,6 +6,7 @@ export default function useFetchShipsList() {
   const { setError, setLoading } = useContextStarWars()
 
   const fetchStarShips = async page => {
+
     setLoading(true)
     setError(null)
     try {
