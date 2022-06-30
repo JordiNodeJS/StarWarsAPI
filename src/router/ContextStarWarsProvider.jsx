@@ -6,6 +6,7 @@ export default function ContextStarWarsProvider({ children }) {
 
   const [url, setUrl] = useState(null)
   const [page, setPage] = useState(1)
+  const [auth, setAuth] = useState(true)
 
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -21,6 +22,8 @@ export default function ContextStarWarsProvider({ children }) {
         setError,
         loading,
         setLoading,
+        auth,
+        setAuth
       }}>
       {children}
     </ContextStarWars.Provider>
