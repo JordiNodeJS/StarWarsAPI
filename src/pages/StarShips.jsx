@@ -37,6 +37,7 @@ const useStyles = createStyles(theme => ({
       }`,
     },
   },
+
   links: {
     textDecoration: 'none',
     color:
@@ -116,7 +117,7 @@ const StarShips = () => {
     <>
       <div>
         <Center mt='lg'>
-          {<Pagination total={4} page={page} onChange={setPage} />}
+          {<Pagination color='yellow' total={4} page={page} onChange={setPage} />}
         </Center>
         <Container>
           {error && <p>Error: {error.message}</p>}
