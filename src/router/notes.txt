@@ -16,3 +16,6 @@
                       })}>
                       LOGIN
                     </Button>
+
+
+                    onClick={() => valid ? setAuth(true): setAuth(false)}

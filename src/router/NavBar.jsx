@@ -20,18 +20,8 @@ import { useBooleanToggle } from '@mantine/hooks'
 import ButtonTheme from '../components/ButtonTheme'
 // import LogoSvg from '../components/LogoSvg'
 import Logo from '../components/Logo'
-import {
-  Logout,
-  Login,
-  Heart,
-  Star,
-  Message,
-  Settings,
-  PlayerPause,
-  Trash,
-  SwitchHorizontal,
-  ChevronDown,
-} from 'tabler-icons-react'
+import { Logout, Login, Message, ChevronDown } from 'tabler-icons-react'
+import useContextStarWars from '../hooks/useContextStarWars'
 const HEADER_HEIGHT = 200
 
 const useStyles = createStyles(theme => ({
@@ -167,7 +157,6 @@ const useStyles = createStyles(theme => ({
         : theme.colors.gray[7],
   },
 
-
   links: {
     [theme.fn.smallerThan('sm')]: {
       display: 'none',
@@ -222,6 +211,7 @@ const NavBar = ({ links }) => {
   const [opened, toggleOpened] = useBooleanToggle(false)
   const [userMenuOpened, setUserMenuOpened] = useState(false)
   const [active, setActive] = useState(links[0].link)
+  const {setAuth} = useContextStarWars()
   const { classes, theme, cx } = useStyles()
 
   const items = links.map(link => (
@@ -293,15 +283,13 @@ const NavBar = ({ links }) => {
                 </UnstyledButton>
               }>
               <Menu.Item icon={<Login size={14} color={theme.colors.red[6]} />}>
-                Login 
+               <Link to='login'>Login</Link> 
               </Menu.Item>
-              <Menu.Item
-                icon={<Logout size={14}  />}>
-                Logout
-              </Menu.Item>
+              <Menu.Item icon={<Logout size={14} />}>
+                <Link to='/' onClick={ _ => setAuth(false)}>Logout</Link></Menu.Item>
               <Menu.Item
                 icon={<Message size={14} color={theme.colors.blue[6]} />}>
-                Register
+               <Link to='/register'>Register</Link>
               </Menu.Item>
             </Menu>
           </Group>

@@ -6,7 +6,11 @@ import NotFound from './NotFound'
 import ContextStarWarsProvider from './ContextStarWarsProvider'
 import GlobalFontFace from '../components/GlobalFontFace'
 import GlobalCustomStyles from '../components/GlobalCustomStyles'
-import Logo from '../components/Logo'
+import PrivateRoutes from '../utils/PrivateRoutes'
+import Home from '../pages/Home'
+import Login from '../pages/Login'
+import Welcome from '../pages/Welcome'
+import Register from '../pages/Register'
 
 const navbarLinks = {
   "links": [
@@ -21,24 +25,24 @@ const navbarLinks = {
   ]
 }
 
-const Home = () => [<h1 key={1}>Home</h1>, <h2 key={2}>My Sweet Home</h2>]
-const Welcome = () => <h1>Welcome</h1>
 
 const Router = () => {
-
   return (
     <ContextStarWarsProvider>
       <GlobalFontFace />
       <GlobalCustomStyles />
-        <NavBar {...navbarLinks} />
-        <Routes>
-          <Route path="/" element={<Welcome />} />
-          <Route path="home" element={<Home />} />
-          <Route path="starships" element={<StarShips />} />
+      <NavBar {...navbarLinks} />
+      <Routes>
+        <Route path='/' element={<Welcome />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path='home' element={<Home />} />
+          <Route path='starships' element={<StarShips />} />
           <Route path='starships/:id' element={<StarShip />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      
+        </Route>
+        <Route path='*' element={<NotFound />} />
+        <Route path='login' element={<Login />} />
+        <Route path='register' element={<Register />} />
+      </Routes>
     </ContextStarWarsProvider>
   )
 }
