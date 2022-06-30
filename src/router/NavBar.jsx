@@ -17,7 +17,6 @@ import {
 } from '@mantine/core'
 import { useBooleanToggle } from '@mantine/hooks'
 import ButtonTheme from '../components/ButtonTheme'
-// import Logo from '../components/Logo'
 import LogoSvg from '../components/LogoSvg'
 
 const HEADER_HEIGHT = 230
@@ -50,6 +49,19 @@ const useStyles = createStyles(theme => ({
   //   alignItems: 'center',
   //   height: '100%',
   // },
+  user: {
+    backgroundColor: theme.colorScheme === 'dark' ? theme.fn.darken('#868e96', 0.75): theme.fn.lighten('#e98902', 0.75) ,
+    color: theme.colorScheme === 'light' ? theme.fn.darken('#868e96', 0.75): theme.fn.lighten('#e98902', 0.75) ,
+    border: '1px solid gray',
+    height: 42,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 5,
+
+    '&:hover': {
+      backgroundColor: theme.colorScheme === 'light' ? theme.fn.darken('#e98902', 0.02): theme.fn.lighten('#e98902', 0.45)   ,
+    },
+  },
 
   header: {
     position: 'relative',
@@ -99,7 +111,7 @@ const useStyles = createStyles(theme => ({
   buttonTheme: {
     position: 'absolute',
     top: 0,
-    right: 0,
+    left: 0,
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -148,8 +160,6 @@ const useStyles = createStyles(theme => ({
     },
   },
 
-
-
   linkActive: {
     '&, &:hover': {
       backgroundColor:
@@ -195,26 +205,20 @@ const NavBar = ({ links }) => {
           <Container className={classes.inner}>
             <Container mb='sm' mt={-60} className={classes.logo}>
               <Grid>
-                <Grid.Col span={3}>
-                </Grid.Col>
+                <Grid.Col span={3}></Grid.Col>
                 <Grid.Col span={3}>
                   <LogoSvg />
                 </Grid.Col>
                 <Grid.Col span={3} offset={3}>
-                
-                    <Group className={classes.login} spacing={9}>
-                      <Button
-                        className={cx(classes.link, classes.buttonLogin)}
-                        variant='outline'>
-                        LOGIN
-                      </Button>
-                      <Button
-                        className={cx(classes.link, classes.buttonLogin)}
-                        variant='outline'>
-                        LOGOUT
-                      </Button>
-                    </Group>
-                  
+                  <Group className={classes.login} spacing={9}>
+                    <Button
+                      className={classes.user}>
+                      LOGIN
+                    </Button>
+                    <Button className={classes.user}>
+                      LOGOUT
+                    </Button>
+                  </Group>
                 </Grid.Col>
               </Grid>
             </Container>
