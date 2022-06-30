@@ -17,16 +17,7 @@ const navbarLinks = {
     {
       "link": "/starships",
       "label": "StarShips"
-    },
-    {
-      "link": "/login",
-      "label": "LOGIN"
-    },
-    {
-      "link": "/logout",
-      "label": "LOGOUT"
-    },
-
+    }
   ]
 }
 
@@ -41,7 +32,7 @@ const Router = () => {
       <GlobalCustomStyles />
         <NavBar {...navbarLinks} />
         <Routes>
-          <Route path="/" element={<Logo />} />
+          <Route path="/" element={<Welcome />} />
           <Route path="home" element={<Home />} />
           <Route path="starships" element={<StarShips />} />
           <Route path='starships/:id' element={<StarShip />} />

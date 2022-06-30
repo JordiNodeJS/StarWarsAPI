@@ -6,17 +6,33 @@ import {
   Container,
   Grid,
   Button,
+  Menu,
+  Text,
+  UnstyledButton,
   Space,
   Group,
+  Center,
   Burger,
   Paper,
   Transition,
 } from '@mantine/core'
 import { useBooleanToggle } from '@mantine/hooks'
 import ButtonTheme from '../components/ButtonTheme'
-import LogoSvg from '../components/LogoSvg'
-
-const HEADER_HEIGHT = 230
+// import LogoSvg from '../components/LogoSvg'
+import Logo from '../components/Logo'
+import {
+  Logout,
+  Login,
+  Heart,
+  Star,
+  Message,
+  Settings,
+  PlayerPause,
+  Trash,
+  SwitchHorizontal,
+  ChevronDown,
+} from 'tabler-icons-react'
+const HEADER_HEIGHT = 200
 
 const useStyles = createStyles(theme => ({
   root: {
@@ -39,24 +55,62 @@ const useStyles = createStyles(theme => ({
       display: 'none',
     },
   },
+  // userMenu: {
+  //   [theme.fn.smallerThan('xs')]: {
+  //     display: 'none',
+  //   },
+  // },
+  buttonTheme: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
 
+  userActive: {
+    backgroundColor:
+      theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
+  },
+  user: {
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+    padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
+    borderRadius: theme.radius.sm,
+    transition: 'background-color 100ms ease',
+
+    '&:hover': {
+      backgroundColor:
+        theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
+    },
+  },
   // header: {
   //   display: 'flex',
   //   justifyContent: 'space-between',
   //   alignItems: 'center',
   //   height: '100%',
   // },
-  user: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.fn.darken('#868e96', 0.75): theme.fn.lighten('#e98902', 0.75) ,
+  user2: {
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.fn.darken('#868e96', 0.75)
+        : theme.fn.lighten('#e98902', 0.75),
     border: '1px solid gray',
     height: 42,
     paddingLeft: 20,
     paddingRight: 20,
-    paddingTop: 5,
+    paddingTop: 12,
     fontSize: '0.8rem',
-    color: theme.colorScheme === 'light' ? theme.fn.darken('#868e96', 0.75): theme.fn.lighten('#e98902', 0.75) ,
+    color:
+      theme.colorScheme === 'light'
+        ? theme.fn.darken('#868e96', 0.75)
+        : theme.fn.lighten('#e98902', 0.75),
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'light' ? theme.fn.darken('#e98902', 0.02): theme.fn.lighten('#e98902', 0.45)   ,
+      backgroundColor:
+        theme.colorScheme === 'light'
+          ? theme.fn.darken('#EBC52A', 0.02)
+          : theme.fn.lighten('gray', 0.21),
     },
   },
 
@@ -84,7 +138,14 @@ const useStyles = createStyles(theme => ({
   menu: {
     display: 'flex',
     alignItems: 'center',
-    // width: 300,
+    width: 300,
+    marginTop: theme.spacing.md,
+  },
+
+  logo_: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
 
   login: {
@@ -105,19 +166,7 @@ const useStyles = createStyles(theme => ({
         ? theme.colors.dark[0]
         : theme.colors.gray[7],
   },
-  buttonTheme: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  logo: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+
 
   links: {
     [theme.fn.smallerThan('sm')]: {
@@ -171,8 +220,9 @@ const useStyles = createStyles(theme => ({
 
 const NavBar = ({ links }) => {
   const [opened, toggleOpened] = useBooleanToggle(false)
+  const [userMenuOpened, setUserMenuOpened] = useState(false)
   const [active, setActive] = useState(links[0].link)
-  const { classes, cx } = useStyles()
+  const { classes, theme, cx } = useStyles()
 
   const items = links.map(link => (
     <Link
@@ -200,25 +250,15 @@ const NavBar = ({ links }) => {
             size='sm'
           />
           <Container className={classes.inner}>
-            <Container mb='sm' mt={-60} className={classes.logo}>
-              <Grid>
-                <Grid.Col span={3}>
-                  <Space w='xs' />
+            <Container mb='sm'>
+              <Grid gutter={40}>
+                <Grid.Col span={4}></Grid.Col>
+                <Grid.Col span={4}>
+                  <Center>
+                    <Logo />
+                  </Center>
                 </Grid.Col>
-                <Grid.Col span={3}>
-                  <LogoSvg />
-                </Grid.Col>
-                <Grid.Col span={3} offset={3}>
-                  <Group className={classes.login} spacing={9}>
-                    <Button
-                      className={classes.user}>
-                      LOGIN
-                    </Button>
-                    <Button className={classes.user}>
-                      LOGOUT
-                    </Button>
-                  </Group>
-                </Grid.Col>
+                <Grid.Col span={4}></Grid.Col>
               </Grid>
             </Container>
 
@@ -233,9 +273,43 @@ const NavBar = ({ links }) => {
 
           <Group className={classes.buttonTheme}>
             <ButtonTheme />
+            <Menu
+              size={260}
+              placement='end'
+              transition='pop-top-right'
+              onClose={() => setUserMenuOpened(false)}
+              onOpen={() => setUserMenuOpened(true)}
+              control={
+                <UnstyledButton
+                  className={cx(classes.user, classes.user2, {
+                    [classes.userActive]: userMenuOpened,
+                  })}>
+                  <Group spacing={7}>
+                    <Text weight={500} size='sm' sx={{ lineHeight: 1 }} mr={3}>
+                      USER
+                    </Text>
+                    <ChevronDown size={12} />
+                  </Group>
+                </UnstyledButton>
+              }>
+              <Menu.Item icon={<Login size={14} color={theme.colors.red[6]} />}>
+                Login 
+              </Menu.Item>
+              <Menu.Item
+                icon={<Logout size={14}  />}>
+                Logout
+              </Menu.Item>
+              <Menu.Item
+                icon={<Message size={14} color={theme.colors.blue[6]} />}>
+                Register
+              </Menu.Item>
+            </Menu>
           </Group>
 
-          <Transition transition='pop-top-right' duration={200} mounted={opened}>
+          <Transition
+            transition='pop-top-right'
+            duration={200}
+            mounted={opened}>
             {styles => (
               <Paper className={classes.dropdown} withBorder style={styles}>
                 {items}
