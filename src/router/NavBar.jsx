@@ -4,10 +4,7 @@ import {
   createStyles,
   Header,
   Container,
-  Center,
   Grid,
-  Text,
-  Anchor,
   Button,
   Space,
   Group,
@@ -51,13 +48,13 @@ const useStyles = createStyles(theme => ({
   // },
   user: {
     backgroundColor: theme.colorScheme === 'dark' ? theme.fn.darken('#868e96', 0.75): theme.fn.lighten('#e98902', 0.75) ,
-    color: theme.colorScheme === 'light' ? theme.fn.darken('#868e96', 0.75): theme.fn.lighten('#e98902', 0.75) ,
     border: '1px solid gray',
     height: 42,
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 5,
-
+    fontSize: '0.8rem',
+    color: theme.colorScheme === 'light' ? theme.fn.darken('#868e96', 0.75): theme.fn.lighten('#e98902', 0.75) ,
     '&:hover': {
       backgroundColor: theme.colorScheme === 'light' ? theme.fn.darken('#e98902', 0.02): theme.fn.lighten('#e98902', 0.45)   ,
     },
@@ -87,13 +84,13 @@ const useStyles = createStyles(theme => ({
   menu: {
     display: 'flex',
     alignItems: 'center',
-    width: 300,
+    // width: 300,
   },
 
   login: {
-    position: 'relative',
+    position: 'absolute',
     top: 64,
-    right: -150,
+    right: 20,
     display: 'flex',
     width: 200,
     justifyContent: 'flex-end',
@@ -111,7 +108,7 @@ const useStyles = createStyles(theme => ({
   buttonTheme: {
     position: 'absolute',
     top: 0,
-    left: 0,
+    right: 0,
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -205,7 +202,9 @@ const NavBar = ({ links }) => {
           <Container className={classes.inner}>
             <Container mb='sm' mt={-60} className={classes.logo}>
               <Grid>
-                <Grid.Col span={3}></Grid.Col>
+                <Grid.Col span={3}>
+                  <Space w='xs' />
+                </Grid.Col>
                 <Grid.Col span={3}>
                   <LogoSvg />
                 </Grid.Col>
@@ -236,10 +235,7 @@ const NavBar = ({ links }) => {
             <ButtonTheme />
           </Group>
 
-          <Transition
-            transition='pop-top-right'
-            duration={200}
-            mounted={opened}>
+          <Transition transition='pop-top-right' duration={200} mounted={opened}>
             {styles => (
               <Paper className={classes.dropdown} withBorder style={styles}>
                 {items}

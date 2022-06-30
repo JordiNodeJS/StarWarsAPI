@@ -17,7 +17,15 @@ const navbarLinks = {
     {
       "link": "/starships",
       "label": "StarShips"
-    }
+    },
+    {
+      "link": "/login",
+      "label": "LOGIN"
+    },
+    {
+      "link": "/logout",
+      "label": "LOGOUT"
+    },
 
   ]
 }
