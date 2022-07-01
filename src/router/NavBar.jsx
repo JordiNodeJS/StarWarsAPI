@@ -43,11 +43,7 @@ const useStyles = createStyles(theme => ({
       display: 'none',
     },
   },
-  // userMenu: {
-  //   [theme.fn.smallerThan('xs')]: {
-  //     display: 'none',
-  //   },
-  // },
+
   buttonTheme: {
     position: 'absolute',
     top: 10,
