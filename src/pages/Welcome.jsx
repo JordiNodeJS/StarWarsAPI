@@ -80,11 +80,13 @@ const useStyles = createStyles(theme => ({
   },
   video: {
     width: 900,
-    [theme.fn.smallerThan('xs')]: {
-      width: 200,
-    },
     [theme.fn.smallerThan('md')]: {
+      marginTop:60,
       width: 500,
+    },
+    [theme.fn.smallerThan('xs')]: {
+      marginTop:60,
+      width: 400,
     },
   },
 
