@@ -5,11 +5,9 @@ import {
   Header,
   Container,
   Grid,
-  Button,
   Menu,
   Text,
   UnstyledButton,
-  Space,
   Group,
   Center,
   Burger,
@@ -75,12 +73,7 @@ const useStyles = createStyles(theme => ({
         theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
     },
   },
-  // header: {
-  //   display: 'flex',
-  //   justifyContent: 'space-between',
-  //   alignItems: 'center',
-  //   height: '100%',
-  // },
+
   user2: {
     backgroundColor:
       theme.colorScheme === 'dark'

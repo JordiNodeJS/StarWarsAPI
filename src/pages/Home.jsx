@@ -12,7 +12,7 @@ const useStyles = createStyles((theme) => ({
 
   inner: {
     position: 'relative',
-    paddingTop: 200,
+    paddingTop: 90,
     paddingBottom: 120,
 
     [BREAKPOINT]: {
@@ -88,7 +88,7 @@ export default function Home() {
       <Container size={700} className={classes.inner}>
         <h1 className={classes.title}>
           A{' '}
-          <Text component="span" variant="gradient" gradient={{ from: 'blue', to: 'cyan' }} inherit>
+          <Text component="span" variant="gradient" gradient={{ from: theme.colorScheme === 'dark' ? 'red' : theme.colors.gray[6], to: theme.colorScheme === 'dark' ? 'yellow' : theme.colors.gray[0] }} inherit>
             fully featured
           </Text>{' '}
           React components and hooks library
