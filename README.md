@@ -1,5 +1,7 @@
 # Star Wars API 
 
+## VIEW PROJECT ONLINE
+[👉 here 👁 ](https://star-wars-api-alpha.vercel.app/)
 ## Tecnoligics used
 - [Vite](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) for configuration app in react.
 - [Mantine](https://mantine.dev/), a component library.
