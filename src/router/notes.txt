@@ -19,3 +19,4 @@
 
 
                     onClick={() => valid ? setAuth(true): setAuth(false)}
+                    onClick={() => setAuth(true)}

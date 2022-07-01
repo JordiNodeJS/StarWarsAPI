@@ -1,10 +1,8 @@
 # Star Wars API 
 
-Created: June 20, 2022 11:32 PM
-Priority: P1 🔥
-Sprint: Sprint 8
-Status: In Progress
-Type: Task 🔨
+## Tecnoligics used
+- Vite for configuration app in react.
+- Mantine, a component library.
 
 
 ### Listado de naves
@@ -18,7 +16,7 @@ Type: Task 🔨
 
 ## Usage
 
-This project was bootstrapped with [Vite](https://vitejs.dev/).
+This project is bootstrapped with [Vite](https://vitejs.dev/).
 
 ### Project setup
 ```
@@ -42,6 +40,14 @@ See [Configuration Reference](https://vitejs.dev/guide/).
 ### Support notes
 We use vite to manage the project configuration.
 It allows us to minimize the bundle size and performance issues is really important and overall fast.
+
+
+# App Use
+- Tab login: It allows you to come in to StarShips.
+- Tab logout: you logout to welcome page and you won't able to enter StarShips page.
+- Tab Register: demo button
+StarShips pages: a star ships list. Clicking a list item show you a card ship details.
+
 
 
 
