@@ -23,6 +23,7 @@ const App = () => {
           fontFamily: 'DIN, sans-serif',
           fontFamilyMonospace: 'Monaco, Courier, monospace',
           headings: { fontFamily: 'Greycliff CF, sans-serif' },
+          primaryColor: 'yellow'
         } }}
         withGlobalStyles
         withNormalizeCSS>
