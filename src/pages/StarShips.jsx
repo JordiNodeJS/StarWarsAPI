@@ -14,7 +14,10 @@ import {
 } from '@mantine/core'
 import { Link } from 'react-router-dom'
 import useContextStarWars from '../hooks/useContextStarWars'
+import Skeletron from '../components/Skeletron'
+import Dots from '../components/Dots'
 
+const HEADER_HEIGHT = 20
 const useStyles = createStyles(theme => ({
   header: {
     position: 'sticky',
@@ -36,6 +39,33 @@ const useStyles = createStyles(theme => ({
           : theme.colors.gray[2]
       }`,
     },
+  },
+  wrapper: {
+    position: 'relative',
+    paddingTop: 30,
+    paddingBottom: 80,
+
+    '@media (max-width: 755px)': {
+      paddingTop: 80,
+      paddingBottom: 60,
+    },
+  },
+
+  dots: {
+    position: 'absolute',
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[5]
+        : theme.colors.gray[1],
+
+    '@media (max-width: 755px)': {
+      display: 'none',
+    },
+  },
+
+  dotsLeft: {
+    left: 0,
+    top: 0,
   },
 
   links: {
@@ -116,34 +146,31 @@ const StarShips = () => {
   return (
     <>
       <div>
-        <Center mt='lg'>
-          {<Pagination color='yellow' total={4} page={page} onChange={setPage} />}
-        </Center>
-        <Container>
+        <Container className={classes.wrapper} size='md'>
+          <Center>
+            {
+              <Pagination
+                color='yellow'
+                total={4}
+                page={page}
+                onChange={setPage}
+              />
+            }
+          </Center>
+          <Dots className={classes.dots} style={{ left: 0, top: HEADER_HEIGHT }} />
+          <Dots className={classes.dots} style={{ left: 60, top: HEADER_HEIGHT }} />
+          <Dots className={classes.dots} style={{ left: 0, top: HEADER_HEIGHT +140 }} />
+          <Dots className={classes.dots} style={{ right: 0, top: HEADER_HEIGHT + 60 }} />
+
           {error && <p>Error: {error.message}</p>}
 
           {loading ? (
-           <>
-             <Center mt='lg' mb='sm'>
-               <Loader variant='bars' color='yellow' size='lg' />
-             </Center>
-             <Skeleton height={12} mb={20} width="30%" radius="xl" />
-             <Skeleton height={12} mb={20} width="25%" radius="xl" />
-             <Skeleton height={12} mb={20} width="30%" radius="xl" />
-             <Skeleton height={12} mb={20} width="40%" radius="xl" />
-             <Skeleton height={12} mb={20} width="45%" radius="xl" />
-             <Skeleton height={12} mb={20} width="30%" radius="xl" />
-             <Skeleton height={12} mb={20} width="20%" radius="xl" />
-             <Skeleton height={12} mb={20} width="35%" radius="xl" />
-             <Skeleton height={12} mb={20} width="25%" radius="xl" />
-             <Skeleton height={12} mb={20} width="30%" radius="xl" />
-             <Skeleton height={12} mb={20} width="25%" radius="xl" />
-             <Skeleton height={12} mb={20} width="15%" radius="xl" />
-             <Skeleton height={12} mb={20} width="18%" radius="xl" />
-             <Skeleton height={12} mb={20} width="15%" radius="xl" />
-             <Skeleton height={12} mb={20} width="20%" radius="xl" />
-
-           </>
+            <>
+              <Center mt='lg' mb='sm'>
+                <Loader variant='bars' color='yellow' size='lg' />
+              </Center>
+              <Skeletron />
+            </>
           ) : (
             <ScrollArea
               sx={{ height: 'calc(60vh - 30px)' }}
