@@ -47,7 +47,7 @@ function TooltipFocus() {
   return (
     <Tooltip
       label={
-        valid ? 'All good right now! until you check out dev console 🤣 but it still works' : 'Password must include at least 6 characters, and a donative for this project too 😛'
+        valid ? 'All good! 🤣' : 'Password must include at least 6 characters, and a donative for this project too 😛'
       }
       position='bottom'
       placement='end'
