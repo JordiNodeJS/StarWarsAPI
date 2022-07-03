@@ -2,6 +2,7 @@ import { BrowserRouter } from 'react-router-dom'
 import RouterApp from './router/RouterApp'
 import { MantineProvider, ColorSchemeProvider } from '@mantine/core'
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
+import './App.css'
 
 const App = () => {
   const [colorScheme, setColorScheme] = useLocalStorage({
