@@ -2,7 +2,7 @@
 
 ## VIEW PROJECT ONLINE
 [👉 here 👁 ](https://star-wars-api-alpha.vercel.app/)
-## Tecnoligics used
+## Tecnologics used
 - [Vite](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) for configuration app in react.
 - [Mantine](https://mantine.dev/), a component library.
 - [CodeSee](https://www.codesee.io/) for genetating a interactive map
